@@ -1,14 +1,11 @@
 'use strict';
 
-let map = document.querySelector('.map');
+// let map = document.querySelector('.map');
 // map.classList.remove('map--faded');
 
 // Раздел перемещения метки указания адреса объявления
 let mapPinMain = document.querySelector('.map__pin--main');
-console.log(mapPinMain);
-
 let kog = mapPinMain.querySelector('svg');
-console.log(kog);
 
 kog.addEventListener('mousedown', function (evt) {
   evt.preventDefault();
@@ -37,11 +34,10 @@ kog.addEventListener('mousedown', function (evt) {
 
   let onMouseUp = function (upEvt) {
     upEvt.preventDefault();
-
-		document.removeEventListener('mousemove', onMouseMove);
-		document.removeEventListener('mouseup', onMouseUp);
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
   };
-
   document.addEventListener('mousemove', onMouseMove);
-	document.addEventListener('mouseup', onMouseUp);
+  document.addEventListener('mouseup', onMouseUp);
 });
+// КОНУЦ РАЗДЕЛА
