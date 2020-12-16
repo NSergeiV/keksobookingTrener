@@ -13,6 +13,7 @@ let map = document.querySelector('.map');
 let mapPinMain = document.querySelector('.map__pin--main');
 let markerSvg = mapPinMain.querySelector('svg');
 let markerImg = mapPinMain.querySelector('img');
+const mapArea = map.querySelector('.map__pins');
 
 // Функция перемещения
 const moving = (evt) => {
@@ -21,21 +22,36 @@ const moving = (evt) => {
     y: evt.clientY
   };
 
+  const leftCoordMapArea = Math.floor(mapArea.getBoundingClientRect().left);
+  const topCoordMapArea = Math.floor(mapArea.getBoundingClientRect().top);
+  console.log(leftCoordMapArea);
+  console.log(topCoordMapArea);
+
+  let scopeSearch = {
+    leftX: leftCoordMapArea,
+    rightX: leftCoordMapArea + 1200
+  };
+
+  console.log(scopeSearch.rightX);
+
   let onMouseMove = function (moveEvt) {
     moveEvt.preventDefault();
 
-    let shift = {
-      x: startCoords.x - moveEvt.clientX,
-      y: startCoords.y - moveEvt.clientY
-    };
+    if (moveEvt.clientX >= scopeSearch.leftX && moveEvt.clientX < scopeSearch.rightX) {
+      let shift = {
+        x: startCoords.x - moveEvt.clientX,
+        y: startCoords.y - moveEvt.clientY
+      };
 
-    startCoords = {
-      x: moveEvt.clientX,
-      y: moveEvt.clientY
-    };
+      startCoords = {
+        x: moveEvt.clientX,
+        y: moveEvt.clientY
+      };
 
-    mapPinMain.style.top = (mapPinMain.offsetTop - shift.y) + 'px';
-    mapPinMain.style.left = (mapPinMain.offsetLeft - shift.x) + 'px';
+      mapPinMain.style.left = (mapPinMain.offsetLeft - shift.x) + 'px';
+      mapPinMain.style.top = (mapPinMain.offsetTop - shift.y) + 'px';
+    }
+
   };
 
   let onMouseUp = function (upEvt) {
@@ -54,6 +70,7 @@ markerImg.addEventListener('mousedown', function (evt) {
   for (let i = 0; i < fieldsets.length; i++) {
     fieldsets[i].removeAttribute('disabled');
   }
+  adForm.classList.remove('ad-form--disabled');
 
   moving(evt);
 });
