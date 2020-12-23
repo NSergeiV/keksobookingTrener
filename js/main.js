@@ -15,10 +15,13 @@ let markerSvg = mapPinMain.querySelector('svg');
 let markerImg = mapPinMain.querySelector('img');
 const mapArea = map.querySelector('.map__pins');
 
+console.log(mapArea.offsetWidth);
+
 // Функция перемещения
 const moving = (evt) => {
+  const sizeWidthMap = mapArea.offsetWidth;
   let startCoords = {
-    x: evt.clientX,
+    x: evt.clientX + (78 - evt.offsetX),
     y: evt.clientY
   };
 
@@ -29,7 +32,7 @@ const moving = (evt) => {
 
   let scopeSearch = {
     leftX: leftCoordMapArea,
-    rightX: leftCoordMapArea + 1200
+    rightX: leftCoordMapArea + sizeWidthMap
   };
 
   let onMouseMove = function (moveEvt) {
