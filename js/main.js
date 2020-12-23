@@ -24,20 +24,18 @@ const moving = (evt) => {
 
   const leftCoordMapArea = Math.floor(mapArea.getBoundingClientRect().left);
   const topCoordMapArea = Math.floor(mapArea.getBoundingClientRect().top);
-  console.log(leftCoordMapArea);
-  console.log(topCoordMapArea);
+
+  let centralPoint = (Math.floor(markerSvg.getBoundingClientRect().left) + 100) - evt.pageX;
 
   let scopeSearch = {
     leftX: leftCoordMapArea,
     rightX: leftCoordMapArea + 1200
   };
 
-  console.log(scopeSearch.rightX);
-
   let onMouseMove = function (moveEvt) {
     moveEvt.preventDefault();
 
-    if (moveEvt.clientX >= scopeSearch.leftX && moveEvt.clientX < scopeSearch.rightX) {
+    if (moveEvt.clientX + centralPoint >= scopeSearch.leftX && moveEvt.clientX + centralPoint < scopeSearch.rightX) {
       let shift = {
         x: startCoords.x - moveEvt.clientX,
         y: startCoords.y - moveEvt.clientY
