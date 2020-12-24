@@ -26,16 +26,19 @@ const moving = (evt, block) => {
   const leftCoordMapArea = Math.floor(mapArea.getBoundingClientRect().left);
   const topCoordMapArea = Math.floor(mapArea.getBoundingClientRect().top);
 
-  let centralPoint = (Math.ceil(block.getBoundingClientRect().left) + (Math.ceil(block.getBoundingClientRect().width) / 2)) - evt.pageX;
+  let centralPointX = (Math.ceil(block.getBoundingClientRect().left) + (Math.ceil(block.getBoundingClientRect().width) / 2)) - evt.pageX;
+  let centralPointY = (Math.ceil(block.getBoundingClientRect().top) + (Math.ceil(block.getBoundingClientRect().height) / 2)) - evt.pageY;
   let scopeSearch = {
     leftX: leftCoordMapArea,
-    rightX: leftCoordMapArea + sizeWidthMap
+    rightX: leftCoordMapArea + sizeWidthMap,
+    topY: topCoordMapArea + 130,
+    bottomY: topCoordMapArea + 630
   };
 
   let onMouseMove = function (moveEvt) {
     moveEvt.preventDefault();
 
-    if (moveEvt.clientX + centralPoint >= scopeSearch.leftX && moveEvt.clientX + centralPoint < scopeSearch.rightX) {
+    if (moveEvt.clientX + centralPointX >= scopeSearch.leftX && moveEvt.clientX + centralPointX < scopeSearch.rightX && moveEvt.clientY + centralPointY >= scopeSearch.topY && moveEvt.clientY + centralPointY < scopeSearch.bottomY) {
       let shift = {
         x: startCoords.x - moveEvt.clientX,
         y: startCoords.y - moveEvt.clientY
@@ -49,7 +52,6 @@ const moving = (evt, block) => {
       mapPinMain.style.left = (mapPinMain.offsetLeft - shift.x) + 'px';
       mapPinMain.style.top = (mapPinMain.offsetTop - shift.y) + 'px';
     }
-
   };
 
   let onMouseUp = function (upEvt) {
