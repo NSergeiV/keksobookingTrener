@@ -3,6 +3,9 @@
 // РАЗДЕЛ блокировки интерактивных элементов формы
 const adForm = document.querySelector('.ad-form');
 const fieldsets = adForm.querySelectorAll('fieldset');
+const adFormAddress = adForm.querySelector('input[name="address"]');
+console.log(adFormAddress);
+
 for (let i = 0; i < fieldsets.length; i++) {
   fieldsets[i].setAttribute('disabled', '');
 }
@@ -28,15 +31,23 @@ const moving = (evt, block) => {
 
   let centralPointX = (Math.ceil(block.getBoundingClientRect().left) + (Math.ceil(block.getBoundingClientRect().width) / 2)) - evt.pageX;
   let centralPointY = (Math.ceil(block.getBoundingClientRect().top) + (Math.ceil(block.getBoundingClientRect().height) / 2)) - evt.pageY;
+  let centralPointYduble = (Math.ceil(block.getBoundingClientRect().top) + (Math.ceil(block.getBoundingClientRect().height) / 2)) - evt.offsetY;
+  console.log(centralPointY);
+  console.log(centralPointYduble);
   let scopeSearch = {
     leftX: leftCoordMapArea,
     rightX: leftCoordMapArea + sizeWidthMap,
     topY: topCoordMapArea + 130,
-    bottomY: topCoordMapArea + 630
+    bottomY: (630 + topCoordMapArea) + topCoordMapArea
   };
+
+  console.log(scopeSearch.topY);
+  console.log(scopeSearch.bottomY);
 
   let onMouseMove = function (moveEvt) {
     moveEvt.preventDefault();
+
+    console.log(moveEvt.clientY + centralPointY);
 
     if (moveEvt.clientX + centralPointX >= scopeSearch.leftX && moveEvt.clientX + centralPointX < scopeSearch.rightX && moveEvt.clientY + centralPointY >= scopeSearch.topY && moveEvt.clientY + centralPointY < scopeSearch.bottomY) {
       let shift = {
@@ -51,6 +62,7 @@ const moving = (evt, block) => {
 
       mapPinMain.style.left = (mapPinMain.offsetLeft - shift.x) + 'px';
       mapPinMain.style.top = (mapPinMain.offsetTop - shift.y) + 'px';
+      adFormAddress.value = ((mapPinMain.offsetLeft - shift.x) + centralPointX) + ' ' + ((mapPinMain.offsetTop - shift.y) + centralPointY);
     }
   };
 
