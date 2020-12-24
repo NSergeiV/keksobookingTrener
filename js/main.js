@@ -15,21 +15,18 @@ let markerSvg = mapPinMain.querySelector('svg');
 let markerImg = mapPinMain.querySelector('img');
 const mapArea = map.querySelector('.map__pins');
 
-console.log(mapArea.offsetWidth);
-
 // Функция перемещения
-const moving = (evt) => {
+const moving = (evt, block) => {
   const sizeWidthMap = mapArea.offsetWidth;
   let startCoords = {
-    x: evt.clientX + (78 - evt.offsetX),
+    x: evt.clientX,
     y: evt.clientY
   };
 
   const leftCoordMapArea = Math.floor(mapArea.getBoundingClientRect().left);
   const topCoordMapArea = Math.floor(mapArea.getBoundingClientRect().top);
 
-  let centralPoint = (Math.floor(markerSvg.getBoundingClientRect().left) + 100) - evt.pageX;
-
+  let centralPoint = (Math.ceil(block.getBoundingClientRect().left) + (Math.ceil(block.getBoundingClientRect().width) / 2)) - evt.pageX;
   let scopeSearch = {
     leftX: leftCoordMapArea,
     rightX: leftCoordMapArea + sizeWidthMap
@@ -73,13 +70,13 @@ markerImg.addEventListener('mousedown', function (evt) {
   }
   adForm.classList.remove('ad-form--disabled');
 
-  moving(evt);
+  moving(evt, markerImg);
 });
 
 // Активируем наружную часть маркера
 markerSvg.addEventListener('mousedown', function (evt) {
   evt.preventDefault();
 
-  moving(evt);
+  moving(evt, markerSvg);
 });
 // КОНЕЦ РАЗДЕЛА
