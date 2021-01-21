@@ -92,6 +92,7 @@
     window.adForm.classList.remove('ad-form--disabled');
 
     moving(evt, markerImg);
+    window.formFullung();
   });
 
   // Активируем наружную часть маркера
