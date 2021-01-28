@@ -1,5 +1,7 @@
 'use strict';
 
+// Проверка файла на предмет фото или аватарки
+
 (function () {
   const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
   window.checkingFile = (fileChooser, block) => {
