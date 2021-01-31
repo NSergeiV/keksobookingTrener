@@ -6,6 +6,7 @@
   let mapPinMain = document.querySelector('.map__pin--main');
   let markerSvg = mapPinMain.querySelector('svg');
   let markerImg = mapPinMain.querySelector('img');
+  let listAddresses = [];
   const mapArea = map.querySelector('.map__pins');
 
   window.adFormAddress.value = (mapPinMain.offsetLeft + Math.ceil(65 / 2)) + ' ' + (mapPinMain.offsetTop + Math.ceil(65 / 2));
@@ -81,6 +82,13 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   };
+  // КОНЕЦ функции перемещения
+
+  window.successHandler = function (data) {
+    console.log('Все получилось!!!');
+    listAddresses = data;
+    console.log(listAddresses);
+  };
 
   // Активируем внутренний маркер
   markerImg.addEventListener('mousedown', function (evt) {
@@ -93,6 +101,7 @@
 
     moving(evt, markerImg);
     window.formFullung();
+    window.backend.load(window.successHandler, window.pullErrorHandler);
   });
 
   // Активируем наружную часть маркера
