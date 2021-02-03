@@ -1172,6 +1172,14 @@ fieldset {
   font-weight: 700;
 }
 
+.error__inner {
+  font-family: "Open Sans", "Arial", sans-serif;
+  text-align: center;
+  font-weight: 700;
+  font-size: 100px;
+  color: #ffe753;
+}
+
 .success__message::before,
 .error__message::before {
   content: "";

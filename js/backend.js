@@ -10,12 +10,12 @@
     load: function (onLoad, onError) {
       let xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
-      const URL = 'https://21.javascript.pages.academy/keksobooking/data';
+      const URL = 'https://21.javascript.pages.academy/keksobooking/dat';
       xhr.addEventListener('load', function () {
-        if (xhr.status === 200) {
+        if (xhr.status === StatusCode.OK) {
           onLoad(xhr.response);
         } else {
-          onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
+          onError('Статус ответа сервера: ' + xhr.status + ' ' + xhr.statusText);
         }
       });
       xhr.open('GET', URL);
