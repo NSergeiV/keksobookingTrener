@@ -110,7 +110,7 @@
     };
     // КОНЕЦ БЛОКА
 
-    // Далее выбок из выпадающего списка и запуск функций
+    // Далее выбор из выпадающего списка и запуск функций
     choiceHousing.onchange = function () {
       let housing = getHousing(choiceHousing.value);
       priceHousingNight.placeholder = housing;
