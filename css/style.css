@@ -1173,11 +1173,27 @@ fieldset {
 }
 
 .error__inner {
+  position: relative;
+  z-index: 3;
+  display: inline-block;
+
+  text-align: center;
+
   font-family: "Open Sans", "Arial", sans-serif;
   text-align: center;
   font-weight: 700;
-  font-size: 100px;
+  font-size: 50px;
+  line-height: 140px;
   color: #ffe753;
+
+  margin: auto;
+  padding: 30px;
+
+  height: 200px;
+
+  border: 5px solid yellow;
+  border-radius: 50px;
+  background-color: #3c3614;
 }
 
 .success__message::before,

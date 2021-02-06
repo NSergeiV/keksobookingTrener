@@ -8,12 +8,14 @@
   };
 
   let node = document.createElement('div');
+  let nodeInside = document.createElement('div');
   let mainBody = document.querySelector('main');
   window.pullErrorHandler = function (errorMessage) {
     node.classList.add('error');
-    node.classList.add('error__inner');
-    node.style = 'align-items: center;';
-    node.textContent = errorMessage;
+    nodeInside.classList.add('error__inner');
+    // node.style = 'align-items: center;';
+    nodeInside.textContent = errorMessage;
     mainBody.insertAdjacentElement('afterbegin', node);
+    node.insertAdjacentElement('afterbegin', nodeInside);
   };
 })();
