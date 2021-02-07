@@ -2,6 +2,8 @@
 
 // Вывод ошибок сервера на экран
 (function () {
+  const KODE_ESC = 27;
+
   window.pushErrorHandler = function () {
     window.closePopupImgUpload();
     window.popupTemplate('#error', '.error', '.error__button');
@@ -13,9 +15,16 @@
   window.pullErrorHandler = function (errorMessage) {
     node.classList.add('error');
     nodeInside.classList.add('error__inner');
-    // node.style = 'align-items: center;';
     nodeInside.textContent = errorMessage;
     mainBody.insertAdjacentElement('afterbegin', node);
     node.insertAdjacentElement('afterbegin', nodeInside);
+    let closeBanner = function (evt) {
+      if (evt.keyCode === KODE_ESC) {
+        evt.preventDefault();
+        node.remove();
+        document.removeEventListener('keydown', closeBanner);
+      }
+    };
+    document.addEventListener('keydown', closeBanner);
   };
 })();
