@@ -12,7 +12,6 @@
       let xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
       URL = (data) ? 'https://21.javascript.pages.academy/keksobooking' : 'https://21.javascript.pages.academy/keksobooking/data';
-      console.log(URL);
       xhr.addEventListener('load', function () {
         if (xhr.status === StatusCode.OK) {
           onLoad(xhr.response);

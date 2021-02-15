@@ -1,23 +1,23 @@
 'use strict';
 
 (function () {
+  const adForm = document.querySelector('.ad-form');
+  window.adForm = adForm;
   window.formFullung = function () {
-    const choiceHousing = window.adForm.querySelector('#type');
-    const priceHousingNight = window.adForm.querySelector('#price');
-    const choiceTimeIn = window.adForm.querySelector('#timein');
-    const choiceTimeOut = window.adForm.querySelector('#timeout');
+    const choiceHousing = adForm.querySelector('#type');
+    const priceHousingNight = adForm.querySelector('#price');
+    const choiceTimeIn = adForm.querySelector('#timein');
+    const choiceTimeOut = adForm.querySelector('#timeout');
     const checkInTimes = choiceTimeIn.querySelectorAll('option');
     const checkOutTimes = choiceTimeOut.querySelectorAll('option');
-    const choiceRoomNumber = window.adForm.querySelector('#room_number');
-    const choiceCapacity = window.adForm.querySelector('#capacity');
+    const choiceRoomNumber = adForm.querySelector('#room_number');
+    const choiceCapacity = adForm.querySelector('#capacity');
     const checkCapacitys = choiceCapacity.querySelectorAll('option');
-    const avatarChooser = window.adForm.querySelector('#avatar');
-    const photoChooser = window.adForm.querySelector('#images');
-    const avatarBlock = window.adForm.querySelector('.ad-form-header__preview');
+    const avatarChooser = adForm.querySelector('#avatar');
+    const photoChooser = adForm.querySelector('#images');
+    const avatarBlock = adForm.querySelector('.ad-form-header__preview');
     const avatar = avatarBlock.querySelector('img');
-    const photoBlock = window.adForm.querySelector('.ad-form__photo');
-    const formButtonSubmit = document.querySelector('.ad-form__submit');
-    console.log(formButtonSubmit);
+    const photoBlock = adForm.querySelector('.ad-form__photo');
 
     priceHousingNight.placeholder = 1000;
     priceHousingNight.min = 1000;
@@ -131,10 +131,9 @@
     // КОНЕЦ БЛОКА
 
     // Отправка формы на сервер
-    formButtonSubmit.addEventListener('click', function (evt) {
+    adForm.addEventListener('submit', function (evt) {
       evt.preventDefault();
-      console.log('ХОРОЩО')
-      window.backend.save(window.pushGoodData, window.pullErrorHandler, new FormData(window.adFormAddress));
+      window.backend.save(window.pushGoodData, window.pullErrorHandler, new FormData(adForm));
     });
   };
 })();
