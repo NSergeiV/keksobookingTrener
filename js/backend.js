@@ -7,10 +7,12 @@
     OK: 200
   };
   window.backend = {
-    load: function (onLoad, onError) {
+    serverServices: function (onLoad, onError, data) {
+      let URL;
       let xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
-      const URL = 'https://21.javascript.pages.academy/keksobooking/data';
+      URL = (data) ? 'https://21.javascript.pages.academy/keksobooking' : 'https://21.javascript.pages.academy/keksobooking/data';
+      console.log(URL);
       xhr.addEventListener('load', function () {
         if (xhr.status === StatusCode.OK) {
           onLoad(xhr.response);
@@ -25,8 +27,19 @@
         onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
       });
       xhr.timeout = TIMEOUT_IN_MS;
-      xhr.open('GET', URL);
-      xhr.send();
+      if (data) {
+        xhr.open('POST', URL);
+        xhr.send(data);
+      } else {
+        xhr.open('GET', URL);
+        xhr.send();
+      }
+    },
+    load: function (onLoad, onError) {
+      this.serverServices(onLoad, onError);
+    },
+    save: function (onLoad, onError, data) {
+      this.serverServices(onLoad, onError, data);
     }
   };
 })();

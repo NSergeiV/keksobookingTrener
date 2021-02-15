@@ -4,11 +4,6 @@
 (function () {
   const KODE_ESC = 27;
 
-  window.pushErrorHandler = function () {
-    window.closePopupImgUpload();
-    window.popupTemplate('#error', '.error', '.error__button');
-  };
-
   let node = document.createElement('div');
   let nodeInside = document.createElement('div');
   let mainBody = document.querySelector('main');

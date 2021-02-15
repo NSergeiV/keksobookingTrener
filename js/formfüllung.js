@@ -16,6 +16,8 @@
     const avatarBlock = window.adForm.querySelector('.ad-form-header__preview');
     const avatar = avatarBlock.querySelector('img');
     const photoBlock = window.adForm.querySelector('.ad-form__photo');
+    const formButtonSubmit = document.querySelector('.ad-form__submit');
+    console.log(formButtonSubmit);
 
     priceHousingNight.placeholder = 1000;
     priceHousingNight.min = 1000;
@@ -126,5 +128,13 @@
     choiceRoomNumber.onchange = function () {
       getCapacity(choiceRoomNumber.value);
     };
+    // КОНЕЦ БЛОКА
+
+    // Отправка формы на сервер
+    formButtonSubmit.addEventListener('click', function (evt) {
+      evt.preventDefault();
+      console.log('ХОРОЩО')
+      window.backend.save(window.pushGoodData, window.pullErrorHandler, new FormData(window.adFormAddress));
+    });
   };
 })();
