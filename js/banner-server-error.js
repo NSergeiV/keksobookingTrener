@@ -7,6 +7,7 @@
   let node = document.createElement('div');
   let nodeInside = document.createElement('div');
   let mainBody = document.querySelector('main');
+  window.mainBody = mainBody;
   window.pullErrorHandler = function (errorMessage) {
     node.classList.add('error');
     nodeInside.classList.add('error__inner');
