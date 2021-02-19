@@ -2,12 +2,12 @@
 
 (function () {
   // РАЗДЕЛ перемещения метки с указанием координат в поле адреса объявления
-  let map = document.querySelector('.map');
+  // let map = document.querySelector('.map');
   let mapPinMain = document.querySelector('.map__pin--main');
   let markerSvg = mapPinMain.querySelector('svg');
   let markerImg = mapPinMain.querySelector('img');
   let listAddresses;
-  const mapArea = map.querySelector('.map__pins');
+  const mapArea = window.map.querySelector('.map__pins');
 
   window.listAddresses = listAddresses;
 
@@ -88,15 +88,15 @@
 
   window.successHandler = function (data) {
     window.listAddresses = data;
-    map.querySelector('form').style.opacity = '1';
+    window.map.querySelector('form').style.opacity = '1';
   };
 
   // Активируем внутренний маркер
   markerImg.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
     window.backend.load(window.successHandler, window.pullErrorHandler);
-    map.classList.remove('map--faded');
-    map.querySelector('form').style.opacity = '0';
+    window.map.classList.remove('map--faded');
+    window.map.querySelector('form').style.opacity = '0';
     for (let i = 0; i < window.fieldsets.length; i++) {
       window.fieldsets[i].removeAttribute('disabled');
     }
