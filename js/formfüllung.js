@@ -133,7 +133,7 @@
     // Отправка формы на сервер
     adForm.addEventListener('submit', function (evt) {
       evt.preventDefault();
-      window.backend.save(window.pushGoodData, window.pullErrorHandler, new FormData(adForm));
+      window.backend.save(window.pushGoodData, window.pushErrorData, new FormData(adForm));
     });
   };
 })();
