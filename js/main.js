@@ -14,9 +14,12 @@
   window.map = map;
   window.mainOne = mainOne;
   // window.adForm = adForm;
-
-  for (let i = 0; i < fieldsets.length; i++) {
+  window.lockdown = function () {
+    for (let i = 0; i < fieldsets.length; i++) {
     fieldsets[i].setAttribute('disabled', '');
-  }
+    }
+  };
+
+  window.lockdown();
   // КОНЕЦ РАЗДЕЛА
 })();

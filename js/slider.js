@@ -10,6 +10,7 @@
   const mapArea = window.map.querySelector('.map__pins');
 
   window.listAddresses = listAddresses;
+  window.mapPinMain = mapPinMain;
 
   window.adFormAddress.value = (mapPinMain.offsetLeft + Math.ceil(65 / 2)) + ' ' + (mapPinMain.offsetTop + Math.ceil(65 / 2));
 
