@@ -18,6 +18,7 @@
     const avatarBlock = adForm.querySelector('.ad-form-header__preview');
     const avatar = avatarBlock.querySelector('img');
     const photoBlock = adForm.querySelector('.ad-form__photo');
+    const adFormReset = adForm.querySelector('.ad-form__reset');
 
     priceHousingNight.placeholder = 1000;
     priceHousingNight.min = 1000;
@@ -134,6 +135,12 @@
     adForm.addEventListener('submit', function (evt) {
       evt.preventDefault();
       window.backend.save(window.pushGoodData, window.pushErrorData, new FormData(adForm));
+    });
+
+    // Кнопка сброса формы
+    adFormReset.addEventListener('click', function (evt) {
+      evt.preventDefault();
+      window.formReset();
     });
   };
 })();

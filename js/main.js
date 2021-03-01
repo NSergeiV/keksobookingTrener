@@ -16,7 +16,7 @@
   // window.adForm = adForm;
   window.lockdown = function () {
     for (let i = 0; i < fieldsets.length; i++) {
-    fieldsets[i].setAttribute('disabled', '');
+      fieldsets[i].setAttribute('disabled', '');
     }
   };
 
