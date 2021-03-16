@@ -49,7 +49,7 @@
       rightX: leftCoordMapArea + sizeWidthMap,
       topY: topLimit,
       // topY: topCoordMapArea + 130 - window.scrollY,
-      bottomY: (630 + 82 + topCoordMapArea) + topCoordMapArea
+      bottomY: (625 + 82 + topCoordMapArea) + topCoordMapArea
     };
 
     let onMouseMove = function (moveEvt) {
@@ -90,6 +90,7 @@
   window.successHandler = function (data) {
     window.listAddresses = data;
     window.map.querySelector('form').style.opacity = '1';
+    window.placemaks(window.listAddresses);
   };
 
   // Активируем внутренний маркер
