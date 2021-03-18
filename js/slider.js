@@ -79,6 +79,9 @@
 
     let onMouseUp = function (upEvt) {
       upEvt.preventDefault();
+      if (block === markerImg) {
+        window.backend.load(window.successHandler, window.pullErrorHandler);
+      }
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
     };
@@ -96,7 +99,7 @@
   // Активируем внутренний маркер
   markerImg.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
-    window.backend.load(window.successHandler, window.pullErrorHandler);
+    // window.backend.load(window.successHandler, window.pullErrorHandler);
     window.map.classList.remove('map--faded');
     window.map.querySelector('form').style.opacity = '0';
     for (let i = 0; i < window.fieldsets.length; i++) {

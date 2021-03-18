@@ -6,6 +6,33 @@
     window.closeBanner(window.popup, window.closeCardBigEsc);
     window.closeButtenPopup.removeEventListener('mouseup', window.closeCardBigButton);
   };
+  window.sortingAdsFiltered = (set) => {
+    console.log(set);
+    console.log(window.adFormAddress.value);
+    let str = window.adFormAddress.value;
+    let arrStr = str.split(' ');
+    console.log(arrStr);
+    let division = arrStr[0] / arrStr[1];
+    console.log(division);
+    for (let i = 0; i < set.length; i++) {
+      let resultOne = set[i].location.x / set[i].location.y;
+      let minValue = set[i];
+      let differenceOne = division - resultOne;
+      console.log(Math.abs(differenceOne));
+      for (let j = i + 1; j <= set.length - 1; j++) {
+        let resultTwo = set[j].location.x / set[j].location.y;
+        let differenceTwo = division - resultTwo;
+        console.log(Math.abs(differenceTwo));
+        if (Math.abs(differenceTwo) < Math.abs(differenceOne)) {
+          minValue = set[j];
+          let swap = set[i];
+          set[i] = minValue;
+          set[j] = swap;
+        }
+      }
+    }
+    return set;
+  };
   window.placemaks = function (ads) {
     const templatePin = document.querySelector('#pin').content;
     const templateAdCard = document.querySelector('#card').content;
@@ -120,6 +147,14 @@
 
       return newCard;
     };
+    if (window.map.querySelector('button[type="button"]')) {
+      console.log('Есть');
+      let adSet = window.map.querySelectorAll('button[type="button"]');
+      for (let i = adSet.length - 1; i >= 0; i--) {
+        let child = adSet[i];
+        child.parentElement.removeChild(child);
+      }
+    }
     let adsFiltered = [];
     for (let i = 0; i < ads.length; i++) {
       if (ads[i].offer) {
@@ -127,6 +162,8 @@
         adsFiltered.push(element);
       }
     }
+    adsFiltered = window.sortingAdsFiltered(adsFiltered);
+    console.log(adsFiltered);
     for (let i = 0; i < 5; i++) {
       fragment.appendChild(creatingPinBlock(adsFiltered[i]));
     }
