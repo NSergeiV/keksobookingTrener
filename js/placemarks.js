@@ -91,18 +91,7 @@
 
   // Блок формирования меток на карте после сервера
   window.placemaks = function (ads) {
-    // const templatePin = document.querySelector('#pin').content;
     const templateAdCard = document.querySelector('#card').content;
-    // let fragment = document.createDocumentFragment();
-    /* let closeActivePin = (active) => {
-      for (let i = 0; i < active.length; i++) {
-        active[i].classList.remove('map__pin--active');
-      }
-    }; */
-    /* let closeCardBig = () => {
-      let popup = window.map.querySelector('.popup');
-      window.closeBanner(popup, window.closeCardBigEsc);
-    }; */
 
     if (window.map.querySelector('.popup')) {
       window.closeCardBig();
@@ -119,15 +108,6 @@
       }
     };
     // Конец внутренного блока.
-
-    /* let creatingPinBlock = (pin) => {
-      let newElement = templatePin.querySelector('.map__pin').cloneNode(true);
-      newElement.style.left = pin.location.x + 'px';
-      newElement.style.top = pin.location.y + 'px';
-      newElement.querySelector('img').src = pin.author.avatar;
-
-      return newElement;
-    }; */
     let descriptionCard = (data) => {
       let newCard = templateAdCard.querySelector('.map__card').cloneNode(true);
       if (window.map.querySelector('.popup')) {
@@ -214,11 +194,6 @@
     };
     if (window.map.querySelector('button[type="button"]')) {
       window.closeAllPinOnMap();
-      /* let adSet = window.map.querySelectorAll('button[type="button"]');
-      for (let i = adSet.length - 1; i >= 0; i--) {
-        let child = adSet[i];
-        child.parentElement.removeChild(child);
-      } */
     }
     let adsFiltered = [];
     window.adsFiltered = adsFiltered;
@@ -228,22 +203,12 @@
         window.adsFiltered.push(element);
       }
     }
-    /* window.adsFiltered = window.sortingAdsFiltered(window.adsFiltered); // отправляет для сортировки по удаленности от курсора на карте
-    for (let i = 0; i < 5; i++) {
-      fragment.appendChild(creatingPinBlock(window.adsFiltered[i]));
-    }
-    window.map.appendChild(fragment); */
     window.filteringByValue(window.adsFiltered);
-    /* (function () {
-      let upcomingAds = window.adsFiltered.slice(0, 5);
-      return upcomingAds;
-    }); */
 
     // Внутренний блок открытия расширенной карточки объявления
     window.pinActivation = (evt) => {
       if (evt.target && evt.target.closest('button[type="button"]') || evt.target && evt.target.matches('button[type="button"]')) {
         let pinBlock = evt.target.closest('button[type="button"]');
-        // let adTags = window.map.querySelectorAll('button[type="button"]');
         window.closeActivePin();
         pinBlock.classList.add('map__pin--active');
         let cardBig = window.adsFiltered.find(function (elem) {

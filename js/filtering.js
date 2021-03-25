@@ -52,40 +52,6 @@
             return null;
           });
         }
-        /* copyRezult = copyRezult.filter(function (it) {
-          if (key === 'housingType') {
-            return it.offer.type === newObject[key];
-          }
-          if (key === 'housingPrice') {
-            if (newObject[key] === 'middle') {
-              return it.offer.price >= 10000 && it.offer.price <= 50000;
-            }
-            if (newObject[key] === 'low') {
-              return it.offer.price < 10000;
-            }
-            if (newObject[key] === 'high') {
-              return it.offer.price > 50000;
-            }
-          }
-          if (key === 'housingRooms') {
-            return it.offer.rooms === parseInt(newObject[key], 10);
-          }
-          if (key === 'housingGuests') {
-            return it.offer.guests === parseInt(newObject[key], 10);
-          }
-          if (key === 'housingFeatures') {
-            let testRezalt = true;
-            for (let i = 0; i < newObject.housingFeatures.length; i++) {
-              if (it.offer.features.some(function (elem) {
-                return elem === newObject.housingFeatures[i];
-              }) === false) {
-                testRezalt = false;
-                return testRezalt;
-              }
-            }
-            return testRezalt;
-          }
-        }); */
       }
       window.adsFiltered = copyRezult;
       window.closeAllPinOnMap();
@@ -102,7 +68,6 @@
         delete newObject.housingType;
       }
       matches();
-      // console.log(newObject);
     };
     filterHousingPrice.onchange = function () {
       newObject.housingPrice = filterHousingPrice.value;
@@ -110,7 +75,6 @@
         delete newObject.housingPrice;
       }
       matches();
-      // console.log(newObject);
     };
     filterHousingRooms.onchange = function () {
       newObject.housingRooms = filterHousingRooms.value;
