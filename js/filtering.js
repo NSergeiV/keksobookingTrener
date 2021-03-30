@@ -12,7 +12,7 @@
     let newObject = {};
 
     // БЛОК создания отфильтованного массива из объявлений при выборе требований по фильтру
-    let matches = () => {
+    window.matches = () => {
       let copyRezult = copyArr;
       for (let key in newObject) {
         if (newObject.hasOwnProperty(key)) {
@@ -67,28 +67,32 @@
       if (filterHousingType.value === 'any') {
         delete newObject.housingType;
       }
-      matches();
+      window.debounce();
+      // matches();
     };
     filterHousingPrice.onchange = function () {
       newObject.housingPrice = filterHousingPrice.value;
       if (filterHousingPrice.value === 'any') {
         delete newObject.housingPrice;
       }
-      matches();
+      window.debounce();
+      // matches();
     };
     filterHousingRooms.onchange = function () {
       newObject.housingRooms = filterHousingRooms.value;
       if (filterHousingRooms.value === 'any') {
         delete newObject.housingRooms;
       }
-      matches();
+      window.debounce();
+      // matches();
     };
     filterHousingGuests.onchange = function () {
       newObject.housingGuests = filterHousingGuests.value;
       if (filterHousingGuests.value === 'any') {
         delete newObject.housingGuests;
       }
-      matches();
+      window.debounce();
+      // matches();
     };
     let choosingService = (evt) => {
       if (evt.target && evt.target.matches('input[type="checkbox"]')) {
@@ -111,7 +115,8 @@
           delete newObject.housingFeatures;
         }
       }
-      matches();
+      window.debounce();
+      // matches();
     };
 
     // Активируем выбор удобств в фильтре на карте
