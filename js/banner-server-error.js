@@ -1,6 +1,5 @@
 'use strict';
 
-// Вывод ошибок сервера на экран
 (function () {
   let node = document.createElement('div');
   let nodeInside = document.createElement('div');

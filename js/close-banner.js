@@ -1,5 +1,4 @@
 'use strict';
-// Закрытие баннеров с данными и карточки с информацией
 
 (function () {
   window.closeBanner = (popup, functionNameEsc, closeBannerMous) => {

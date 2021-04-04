@@ -1,5 +1,4 @@
 'use strict';
-// Фильтрация объявлений по значению расположенных неподалеку
 
 (function () {
   window.filteringByValue = (copyArr) => {
@@ -11,7 +10,6 @@
     const filterHousingFeatures = formMapFilters.querySelector('#housing-features');
     let newObject = {};
 
-    // БЛОК создания отфильтованного массива из объявлений при выборе требований по фильтру
     window.matches = () => {
       let copyRezult = copyArr;
       for (let key in newObject) {
@@ -57,18 +55,15 @@
       window.closeAllPinOnMap();
       window.drawingPlacemarksMap(window.adsFiltered);
     };
-    // КОНЕЦ блока создания массива
 
     window.drawingPlacemarksMap(window.adsFiltered);
 
-    // В этой нижней части блока создаем объект с параметрами для отбора объявлений
     filterHousingType.onchange = function () {
       newObject.housingType = filterHousingType.value;
       if (filterHousingType.value === 'any') {
         delete newObject.housingType;
       }
       window.debounce();
-      // matches();
     };
     filterHousingPrice.onchange = function () {
       newObject.housingPrice = filterHousingPrice.value;
@@ -76,7 +71,6 @@
         delete newObject.housingPrice;
       }
       window.debounce();
-      // matches();
     };
     filterHousingRooms.onchange = function () {
       newObject.housingRooms = filterHousingRooms.value;
@@ -84,7 +78,6 @@
         delete newObject.housingRooms;
       }
       window.debounce();
-      // matches();
     };
     filterHousingGuests.onchange = function () {
       newObject.housingGuests = filterHousingGuests.value;
@@ -92,7 +85,6 @@
         delete newObject.housingGuests;
       }
       window.debounce();
-      // matches();
     };
     let choosingService = (evt) => {
       if (evt.target && evt.target.matches('input[type="checkbox"]')) {
@@ -116,10 +108,8 @@
         }
       }
       window.debounce();
-      // matches();
     };
 
-    // Активируем выбор удобств в фильтре на карте
     filterHousingFeatures.addEventListener('change', choosingService);
   };
 })();

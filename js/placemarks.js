@@ -1,5 +1,4 @@
 'use strict';
-// Метки объявлений на карте
 
 (function () {
   window.closeCardBigButton = () => {
@@ -7,18 +6,14 @@
     window.closeButtenPopup.removeEventListener('mouseup', window.closeCardBigButton);
   };
 
-  // Производит сортировку меток на карте по приближенности
   window.sortingAdsFiltered = (set) => {
     let str = window.adFormAddress.value;
     let arrStr = str.split(' ');
-    let division = arrStr[0] / arrStr[1];
     for (let i = 0; i < set.length; i++) {
-      let resultOne = set[i].location.x / set[i].location.y;
       let minValue = set[i];
-      let differenceOne = division - resultOne;
+      let differenceOne = Math.round(Math.sqrt(Math.pow((arrStr[0] - set[i].location.x), 2) + Math.pow((arrStr[1] - set[i].location.y), 2)));
       for (let j = i + 1; j <= set.length - 1; j++) {
-        let resultTwo = set[j].location.x / set[j].location.y;
-        let differenceTwo = division - resultTwo;
+        let differenceTwo = Math.round(Math.sqrt(Math.pow((arrStr[0] - set[j].location.x), 2) + Math.pow((arrStr[1] - set[j].location.y), 2)));
         if (Math.abs(differenceTwo) < Math.abs(differenceOne)) {
           minValue = set[j];
           let swap = set[i];
@@ -29,9 +24,7 @@
     }
     return set;
   };
-  // КОНЕЦ блока
 
-  // БЛОК закрытия меток на карте
   window.closeAllPinOnMap = function () {
     let adSet = window.map.querySelectorAll('button[type="button"]');
     for (let i = adSet.length - 1; i >= 0; i--) {
@@ -39,25 +32,19 @@
       child.parentElement.removeChild(child);
     }
   };
-  // КОНЕЦ блока
 
-  // БЛОК снятия с меток на карте активного свечения
   window.closeActivePin = function () {
     let adTags = window.map.querySelectorAll('button[type="button"]');
     for (let i = 0; i < adTags.length; i++) {
       adTags[i].classList.remove('map__pin--active');
     }
   };
-  // КОНЕЦ блока
 
-  // БЛОК закрытия большой карточки с пояснением к метке на карте
   window.closeCardBig = function () {
     let popup = window.map.querySelector('.popup');
     window.closeBanner(popup, window.closeCardBigEsc);
   };
-  // КОНЕЦ блока
 
-  // БЛОК отрисовки меток на карте
   window.drawingPlacemarksMap = function (collection) {
     const templatePin = document.querySelector('#pin').content;
     let fragment = document.createDocumentFragment();
@@ -69,27 +56,24 @@
 
       return newElement;
     };
-    collection = window.sortingAdsFiltered(collection); // отправляет для сортировки по удаленности от курсора на карте
+    collection = window.sortingAdsFiltered(collection);
     collection = collection.slice(0, 5);
     for (let i = 0; i < collection.length; i++) {
       fragment.appendChild(creatingPinBlock(collection[i]));
     }
     window.map.appendChild(fragment);
 
-    // Вешаем клик на метки объявлений на карте для вывода большой карточки к метке
     let adTags = window.map.querySelectorAll('button[type="button"]');
     for (let i = 0; i < adTags.length; i++) {
       adTags[i].onclick = function (evt) {
-        window.pinActivation(evt); // Вывод большой карточки
+        window.pinActivation(evt);
       };
     }
     if (window.map.querySelector('.popup')) {
       window.closeCardBig();
     }
   };
-  // КОНЕЦ блока
 
-  // Блок формирования меток на карте после сервера
   window.placemaks = function (ads) {
     const templateAdCard = document.querySelector('#card').content;
 
@@ -97,9 +81,7 @@
       window.closeCardBig();
     }
 
-    // Внутренний блок. Закрытие расширенной карточки объявления кнопкой ESC.
     window.closeCardBigEsc = (evt) => {
-      // let adTags = window.map.querySelectorAll('button[type="button"]');
       if (evt.keyCode === window.KODE_ESC) {
         evt.preventDefault();
         let popup = window.map.querySelector('.popup');
@@ -107,7 +89,6 @@
         window.closeActivePin();
       }
     };
-    // Конец внутренного блока.
     let descriptionCard = (data) => {
       let newCard = templateAdCard.querySelector('.map__card').cloneNode(true);
       if (window.map.querySelector('.popup')) {
@@ -205,7 +186,6 @@
     }
     window.filteringByValue(window.adsFiltered);
 
-    // Внутренний блок открытия расширенной карточки объявления
     window.pinActivation = (evt) => {
       if (evt.target && evt.target.closest('button[type="button"]') || evt.target && evt.target.matches('button[type="button"]')) {
         let pinBlock = evt.target.closest('button[type="button"]');
@@ -222,9 +202,7 @@
         window.closeButtenPopup.addEventListener('mouseup', window.closeCardBigButton);
       }
     };
-    // Конец внутренного блока
 
-    // Вешаем клик на метки объявлений
     let adTags = window.map.querySelectorAll('button[type="button"]');
     for (let i = 0; i < adTags.length; i++) {
       adTags[i].onclick = function (evt) {
@@ -232,7 +210,6 @@
       };
     }
 
-    // Активируем кнопку REZET на форме
     window.adFormReset.addEventListener('click', function (evt) {
       evt.preventDefault();
       window.formReset(evt);

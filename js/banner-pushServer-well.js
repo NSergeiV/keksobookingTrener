@@ -1,6 +1,5 @@
 'use strict';
 
-// Банер удачной отправик данных
 (function () {
   const templateMessage = document.querySelector('#success').content.querySelector('.success');
   const templateCope = templateMessage.cloneNode(true);

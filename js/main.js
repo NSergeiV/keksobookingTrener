@@ -1,7 +1,6 @@
 'use strict';
 
 (function () {
-  // РАЗДЕЛ блокировки интерактивных элементов формы
   const KODE_ESC = 27;
   const mainOne = document.querySelector('main');
   const fieldsets = document.querySelectorAll('fieldset');
@@ -20,5 +19,4 @@
   };
 
   window.lockdown();
-  // КОНЕЦ РАЗДЕЛА
 })();

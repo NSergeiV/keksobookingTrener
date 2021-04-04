@@ -1,5 +1,4 @@
 'use strict';
-// Задержка выбора параметра по времени (debounce)
 
 (function () {
   const DEBOUNCE_INTERVAL = 500;

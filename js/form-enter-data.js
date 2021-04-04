@@ -25,7 +25,6 @@
     priceHousingNight.placeholder = 1000;
     priceHousingNight.min = 1000;
 
-    // Добавляем фото и отправляем на проверку о принадлежности файла к фото
     avatarChooser.addEventListener('change', function () {
       window.checkingFile(avatarChooser, avatar);
     });
@@ -35,9 +34,7 @@
       photoBlock.appendChild(photoTag);
       window.checkingFile(photoChooser, photoTag);
     });
-    // КОНЕЦ БЛОКА
 
-    // Установка по умолчанию количество гостей
     for (let i = 0; i < checkCapacitys.length; i++) {
       if (checkCapacitys[i].value === '1') {
         checkCapacitys[2].removeAttribute('disabled');
@@ -45,9 +42,7 @@
         checkCapacitys[i].setAttribute('disabled', '');
       }
     }
-    // КОНЕЦ БЛОКА
 
-    // Блок выбора минимальной цены за жилье
     let getHousing = function (flophouse) {
       let answer;
       switch (flophouse) {
@@ -65,9 +60,7 @@
       }
       return answer;
     };
-    // КОНЕЦ БЛОКА
 
-    // Блок выбора времени заезда и выезда
     let searchMatches = function (array, time) {
       for (let i = 0; i < array.length; i++) {
         array[i].removeAttribute('selected');
@@ -78,9 +71,7 @@
         }
       }
     };
-    // КОНЕЦ БЛОКА
 
-    // Блок выбора из списка гостей для конкретного количества комнат
     let getCapacity = function (rooms) {
       for (let i = 0; i < checkCapacitys.length; i++) {
         checkCapacitys[i].removeAttribute('disabled');
@@ -113,9 +104,7 @@
           break;
       }
     };
-    // КОНЕЦ БЛОКА
 
-    // Далее выбор из выпадающего списка и запуск функций
     choiceHousing.onchange = function () {
       let housing = getHousing(choiceHousing.value);
       priceHousingNight.placeholder = housing;
@@ -131,9 +120,7 @@
     choiceRoomNumber.onchange = function () {
       getCapacity(choiceRoomNumber.value);
     };
-    // КОНЕЦ БЛОКА
 
-    // Отправка формы на сервер
     adForm.addEventListener('submit', function (evt) {
       evt.preventDefault();
       window.backend.save(window.pushGoodData, window.pushErrorData, new FormData(adForm));

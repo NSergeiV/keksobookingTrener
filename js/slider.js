@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-  // РАЗДЕЛ перемещения метки с указанием координат в поле адреса объявления
-  // let map = document.querySelector('.map');
+
   let mapPinMain = document.querySelector('.map__pin--main');
   let markerSvg = mapPinMain.querySelector('svg');
   let markerImg = mapPinMain.querySelector('img');
@@ -14,7 +13,6 @@
 
   window.adFormAddress.value = (mapPinMain.offsetLeft + Math.ceil(65 / 2)) + ' ' + (mapPinMain.offsetTop + Math.ceil(65 / 2));
 
-  // Функция перемещения
   const moving = (evt, block) => {
     const sizeWidthMap = mapArea.offsetWidth;
     let startCoords = {
@@ -48,7 +46,6 @@
       leftX: leftCoordMapArea,
       rightX: leftCoordMapArea + sizeWidthMap,
       topY: topLimit,
-      // topY: topCoordMapArea + 130 - window.scrollY,
       bottomY: (625 + 82 + topCoordMapArea) + topCoordMapArea
     };
 
@@ -88,7 +85,6 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   };
-  // КОНЕЦ функции перемещения
 
   window.successHandler = function (data) {
     window.listAddresses = data;
@@ -96,10 +92,8 @@
     window.placemaks(window.listAddresses);
   };
 
-  // Активируем внутренний маркер
   markerImg.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
-    // window.backend.load(window.successHandler, window.pullErrorHandler);
     window.map.classList.remove('map--faded');
     window.map.querySelector('form').style.opacity = '0';
     for (let i = 0; i < window.fieldsets.length; i++) {
@@ -111,11 +105,9 @@
     window.formFullung();
   });
 
-  // Активируем наружную часть маркера
   markerSvg.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
     moving(evt, markerSvg);
   });
-  // КОНЕЦ РАЗДЕЛА
 })();
